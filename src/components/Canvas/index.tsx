@@ -1,3 +1,4 @@
+import styles from "./styles.module.css";
 import { useEffect, useRef } from "react";
 
 interface Props {
@@ -26,13 +27,18 @@ export default function Canvas({ width, height, file }: Props) {
     const img = new Image();
 
     img.onload = () => {
+      context.canvas.width = img.width;
+      context.canvas.height = img.height;
+
       context.drawImage(img, 0, 0);
     };
     img.src = url;
   }, [file]);
 
   return (
-    <canvas ref={ref} width={width} height={height} color="white">
-    </canvas>
+    <div className={styles.div}>
+      <canvas ref={ref} width={width} height={height}>
+      </canvas>
+    </div>
   );
 }
