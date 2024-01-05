@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import { ChangeEvent, useRef } from "react";
 import Icon, { IconType } from "../Icon";
-import useAppStore from "../../stores/AppStore";
+import useAppStore from "@/stores/AppStore";
 
 interface Item {
   name: string;
