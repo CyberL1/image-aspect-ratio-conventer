@@ -1,0 +1,13 @@
+.toolbar {
+  background-color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 80px;
+  user-select: none;
+}
+
+.toolbar .item:hover {
+  background-color: darkred;
+}
