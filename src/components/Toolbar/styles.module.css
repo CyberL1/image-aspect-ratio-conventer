@@ -7,12 +7,3 @@
   width: 80px;
   user-select: none;
 }
-
-.toolbar .item:hover {
-  background-color: darkred;
-}
-
-.toolbar .item.disabled {
-  cursor: not-allowed;
-  color: grey;
-}
