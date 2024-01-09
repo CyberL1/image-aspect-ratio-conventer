@@ -1,13 +1,15 @@
+import useAppStore from "@/stores/AppStore";
 import styles from "./styles.module.css";
 import { useEffect, useRef } from "react";
+import { observer } from "mobx-react-lite";
 
 interface Props {
   width: string;
   height: string;
-  file: File | undefined;
 }
 
-export default function Canvas({ width, height, file }: Props) {
+function Canvas({ width, height }: Props) {
+  const app = useAppStore();
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -21,8 +23,8 @@ export default function Canvas({ width, height, file }: Props) {
 
     context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 
-    if (!file) return;
-    const url = URL.createObjectURL(file);
+    if (!app.file) return;
+    const url = URL.createObjectURL(app.file);
 
     const img = new Image();
 
@@ -33,7 +35,7 @@ export default function Canvas({ width, height, file }: Props) {
       context.drawImage(img, 0, 0);
     };
     img.src = url;
-  }, [file]);
+  }, [app.file]);
 
   return (
     <div className={styles.div}>
@@ -42,3 +44,5 @@ export default function Canvas({ width, height, file }: Props) {
     </div>
   );
 }
+
+export default observer(Canvas);
